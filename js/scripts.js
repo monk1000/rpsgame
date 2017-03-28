@@ -9,8 +9,8 @@
 					score: 0
 				};
 	var newGameElem = document.getElementById('js-newGameElement');
-		pickElem = document.getElementById('js-playerPickElement');
-		resultsElem = document.getElementById('js-resultsTableElement');
+	var	pickElem = document.getElementById('js-playerPickElement');
+	var	resultsElem = document.getElementById('js-resultsTableElement');
 
 	
 	function setGameElements() {
@@ -29,13 +29,13 @@
 					resultsElem.style.display = 'none';
 		}
 	}
-		setGameElements();
+	setGameElements();
 
-		newGameBtn = document.getElementById('js-newGameButton');
-		newGameBtn.addEventListener('click', newGame);
-		playerNameElem = document.getElementById('js-playerName');
-		playerPointsElem = document.getElementById('js-playerPoints');
-		computerPointsElem = document.getElementById('js-computerPoints');
+	newGameBtn = document.getElementById('js-newGameButton');
+	newGameBtn.addEventListener('click', newGame);
+	var	playerNameElem = document.getElementById('js-playerName');
+	var	playerPointsElem = document.getElementById('js-playerPoints');
+	var	computerPointsElem = document.getElementById('js-computerPoints');
 		
 		function newGame() {
 			player.name = prompt('What is Your name?')
@@ -45,15 +45,17 @@
 				player.score = computer.score = 0;
 				gameState = 'started';
 				setGameElements();
+				setGamePoints();
 			}
+		}
 
 			var playerPickElem = document.getElementById('js-playerPick');
-				computerPickElem = document.getElementById('js-computerPick');
-				playerResultElem = document.getElementById('js-playerResult');
-				computerResultElem = document.getElementById('js-computerResult');
-				rockPick = document.getElementById('js-playerPick_rock');
-				paperPick = document.getElementById('js-playerPick_paper');
-				scissorsPick = document.getElementById('js-playerPick_scissors');
+			var	computerPickElem = document.getElementById('js-computerPick');
+			var	playerResultElem = document.getElementById('js-playerResult');
+			var	computerResultElem = document.getElementById('js-computerResult');
+			var	rockPick = document.getElementById('js-playerPick_rock');
+			var	paperPick = document.getElementById('js-playerPick_paper');
+			var	scissorsPick = document.getElementById('js-playerPick_scissors');
 				rockPick.addEventListener('click', function() { playerPick('rock') });
 				paperPick.addEventListener('click', function() { playerPick('paper') });
 				scissorsPick.addEventListener('click', function() { playerPick('scissors') });
@@ -65,14 +67,19 @@
 					playerPickElem.innerHTML = playerPick;
 					computerPickElem.innerHTML = computerPick;
 					checkRoundWinner(playerPick, computerPick);
-					endGame();
-				}
-
+					
+			}
 			
 			function getComputerPick() {
-					var possiblePicks = ['rock', 'paper', 'scissors'];
-					return possiblePicks[Math.floor(Math.random()*3)];
+			var possiblePicks = ['rock', 'paper', 'scissors'];
+				return possiblePicks[Math.floor(Math.random()*3)];
 			}
+
+			function setGamePoints() {
+				playerPointsElem.innerHTML = player.score;
+				computerPointsElem.innerHTML = computer.score;
+			}
+
 
 			function checkRoundWinner(playerPick, computerPick) {
 				
@@ -97,21 +104,16 @@
 						computerResultElem.innerHTML = "WIN!";
 					computer.score++;
 					}
-
-				function setGamePoints() {
-					playerPointsElem.innerHTML = player.score;
-					computerPointsElem.innerHTML = computer.score;
+				setGamePoints();	
+				endGame();	
+			
+				function endGame(){
+					if (player.score == 10 || computer.score == 10) {
+						gameState='ended';
+						setGameElements();
+					}
 				}
-				setGamePoints();
 			}
 
-			function endGame(){
-				if (player.score == 10 || computer.score == 10) {
-					gameState='ended';
-					setGameElements();
-				}
-
-			}
-}
 
 
