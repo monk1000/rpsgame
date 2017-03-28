@@ -1,9 +1,33 @@
 body {
 	margin: 0 auto;
 	box-sizing: border-box;
+	background-color: antiquewhite;
 }
 
 .container {
 	max-width: 1200px;
 }
 
+.gamebox {
+	border: 2px solid white;
+	background-color: antiquewhite;
+	width: 600px;
+	height: 600px;
+	margin: 100px auto;
+}
+
+.startgame {
+	margin: 0 auto 40px auto;
+	text-align: center;
+}
+
+.title {
+	padding-bottom: 25px;
+	color: white;
+	text-shadow: 1px 1px 3px midnightblue;
+}
+
+.rowbuttons {
+	text-align: center;
+	margin-bottom: 30px;
+}
